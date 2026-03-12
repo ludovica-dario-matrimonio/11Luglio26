@@ -47,8 +47,11 @@
             mix-blend-mode: multiply;
         }
 
+        /* Dimensioni foglie in alto */
         .top-left { top: 0; left: 0; width: 90px; }
         .top-right { top: 0; right: 0; width: 90px; transform: scaleX(-1); }
+
+        /* Dimensioni foglie in basso */
         .bottom-left { bottom: 0; left: 0; width: 120px; transform: scaleY(-1); }
         .bottom-right { bottom: 0; right: 0; width: 120px; transform: rotate(180deg); }
 
@@ -150,16 +153,9 @@
 
         .accommodation-item:last-child { border-bottom: none; }
 
-        .hotel-name { font-size: 1.4rem; font-weight: 600; color: var(--verde-salvia); text-decoration: none; }
-        .details { font-size: 1rem; color: #777; font-style: italic; }
+        .hotel-name { font-size: 1.2rem; font-weight: 600; color: var(--verde-salvia); text-decoration: none; }
+        .details { font-size: 0.95rem; color: #777; font-style: italic; }
         .distance { font-weight: 600; color: var(--testo); }
-
-        .contact-link {
-            color: var(--verde-salvia);
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1.4rem;
-        }
 
         .btn-maps {
             display: inline-block;
@@ -184,6 +180,37 @@
             margin-bottom: 15px;
             border-bottom: 1px dotted var(--verde-salvia);
             padding-bottom: 10px;
+        }
+        
+        ul.regali-simbolici li:last-child { border-bottom: none; }
+
+        .regalo-titolo { display: block; font-weight: 600; color: var(--verde-salvia); font-size: 1.1rem; }
+        .regalo-desc { font-size: 0.9rem; font-style: italic; color: #666; }
+
+        .contact-link {
+            color: var(--verde-salvia);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.4rem;
+        }
+
+        footer {
+            text-align: center;
+            padding: 80px 40px 40px 40px; /* Padding generoso per evitare foglie */
+            color: var(--verde-salvia);
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+        }
+
+        /* OTTIMIZZAZIONE MOBILE PER TESTO E FOGLIE */
+        @media (max-width: 600px) {
+            footer {
+                padding: 100px 60px 40px 60px; /* Aumenta margini per mobile */
+                font-size: 0.75rem;
+            }
+            .bottom-left, .bottom-right {
+                width: 100px; /* Leggermente più piccole su mobile se serve spazio */
+            }
         }
     </style>
 </head>
@@ -224,8 +251,8 @@
         <div class="divider"></div>
         <img src="2.png" alt="Mappa" class="mappa-img">
         <div>
-            <a href="https://maps.app.goo.gl/elcito" target="_blank" class="btn-maps">📍 Naviga verso Elcito</a>
-            <a href="https://maps.app.goo.gl/laserra" target="_blank" class="btn-maps" style="background:none; color:var(--verde-salvia); border:1px solid var(--verde-salvia);">📍 Naviga verso La Serra</a>
+            <a href="https://maps.app.goo.gl/3" target="_blank" class="btn-maps">📍 Naviga verso Elcito</a>
+            <a href="https://maps.app.goo.gl/4" target="_blank" class="btn-maps" style="background:none; color:var(--verde-salvia); border:1px solid var(--verde-salvia);">📍 Naviga verso La Serra</a>
         </div>
     </section>
 
@@ -270,8 +297,16 @@
                 <div class="details">Agriturismo • Staffolo — <span class="distance">10-12 min</span></div>
             </div>
             <div class="accommodation-item">
-                <a href="https://www.bedandbreakfast.eu/it/a/FGWIma7y0BJl/bb-la-fonte" target="_blank" class="hotel-name">B&B La Fonte</a>
-                <div class="details">B&B • Staffolo — <span class="distance">3-5 min</span></div>
+                <a href="https://www.villadeisignorelli.it/" target="_blank" class="hotel-name">Villa dei Signorelli</a>
+                <div class="details">Country House • Cupra Montana — <span class="distance">10 min</span></div>
+            </div>
+            <div class="accommodation-item">
+                <a href="http://www.beblafonte.com/" target="_blank" class="hotel-name">B&B La Fonte</a>
+                <div class="details">B&B • Staffolo — <span class="distance">5 min</span></div>
+            </div>
+            <div class="accommodation-item">
+                <a href="https://www.bb-viamazzini.it/" target="_blank" class="hotel-name">B&B Via Mazzini</a>
+                <div class="details">B&B • Staffolo — <span class="distance">2 min (centro storico)</span></div>
             </div>
         </div>
     </section>
@@ -289,10 +324,26 @@
         </p>
         <div class="info-box" style="margin-bottom: 40px; background: rgba(255,255,255,0.5);">
             <ul class="regali-simbolici">
-                <li><strong>Un albero di arancio</strong></li>
-                <li><strong>Un mattone del camino</strong></li>
-                <li><strong>Una luce in giardino</strong></li>
-                <li><strong>Un metro quadro di cotto</strong></li>
+                <li>
+                    <span class="regalo-titolo">Un albero di arancio o di ulivo</span>
+                    <span class="regalo-desc">Per veder crescere radici forti nel nostro nuovo giardino.</span>
+                </li>
+                <li>
+                    <span class="regalo-titolo">Un mattone per il grande camino</span>
+                    <span class="regalo-desc">Per riscaldare i nostri futuri inverni in famiglia.</span>
+                </li>
+                <li>
+                    <span class="regalo-titolo">Una luce in giardino</span>
+                    <span class="regalo-desc">Per illuminare le lunghe tavolate delle nostre cene estive.</span>
+                </li>
+                <li>
+                    <span class="regalo-titolo">Un metro quadro di cotto o pietra</span>
+                    <span class="regalo-desc">Per poggiare solide basi sotto i nostri piedi.</span>
+                </li>
+                <li>
+                    <span class="regalo-titolo">Un profumo per la casa</span>
+                    <span class="regalo-desc">Per rendere accogliente ogni stanza del nostro sogno.</span>
+                </li>
             </ul>
         </div>
     </section>
@@ -310,9 +361,10 @@
         </div>
     </section>
 
-    <footer style="text-align: center; padding: 40px 0; color: var(--verde-salvia); font-size: 0.9rem;">
+    <footer>
         LUDOVICA & DARIO — 11.07.2026
     </footer>
 </div>
+
 </body>
 </html>
