@@ -33,18 +33,19 @@
             width: 100%;
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
             position: relative;
-            /* Padding per i rami negli angoli */
             padding: 5px;
+            overflow: hidden; /* Evita che i rami creino scroll */
         }
 
-        /* STILE PER I RAMI NEGLI ANGOLI */
+        /* RAMI DECORATIVI NEGLI ANGOLI */
         .corner-branch {
             position: absolute;
-            width: 80px; /* Misura piccola come richiesto */
+            width: 80px;
             height: auto;
             border: none;
-            mix-blend-mode: multiply; /* Fonde con lo sfondo crema */
+            mix-blend-mode: multiply;
             z-index: 10;
+            pointer-events: none; /* Impedisce che l'immagine blocchi i click sui link */
         }
 
         .branch-top-left {
@@ -55,7 +56,7 @@
         .branch-bottom-right {
             bottom: 5px;
             right: 5px;
-            transform: rotate(180deg); /* Ruota per specchiarlo */
+            transform: rotate(180deg);
         }
 
         nav {
@@ -107,7 +108,6 @@
             margin: 30px auto;
         }
 
-        /* LINEE DIVISORIE TRA SEZIONI PRINCIPALI */
         .section-divider {
             width: 60%;
             height: 1px;
@@ -116,20 +116,18 @@
             margin: 0 auto;
         }
 
-        /* LINEA DIVISORIA PRIMA DELLA CASA - NUOVA */
         .section-divider-casale {
             width: 80%;
             height: 1px;
             background-color: var(--verde-salvia);
             opacity: 0.6;
-            margin: 60px auto; /* Allinea con il padding delle sezioni */
+            margin: 40px auto;
         }
 
-        /* FIX MAPPA DEFINITIVO - NESSUNA SCURITURA */
         .mappa-img {
             max-width: 60%;
             height: auto;
-            margin: 40px auto; /* Margini puliti per non toccare gli angoli */
+            margin: 40px auto;
             display: block;
             border: none !important;
             box-shadow: none !important;
@@ -137,7 +135,6 @@
             mix-blend-mode: normal; 
         }
 
-        /* STILE CASALE: Mantiene l'effetto fuso */
         .casale-img {
             max-width: 65%;
             height: auto;
@@ -229,7 +226,7 @@
         <p>Ore 16:30 | Borgo di Elcito</p>
         <div class="divider"></div>
         <p style="font-style: italic; font-size: 1.2rem; max-width: 600px; margin: 0 auto;">
-            Ci scambieremo le promesse nella cornice di Elcito con una cerimonia simbolica che celebrerà la nostra unione, avvenuta formalmente qualche giorno prima.
+            Ci scambieremo le promesse nella cornice di Elcito con una cerimonia simbolica che celebrerà la nostra unione.
         </p>
     </section>
 
@@ -244,8 +241,8 @@
         <img src="2.png" alt="Mappa del matrimonio" class="mappa-img">
         
         <div style="margin-top: 20px;">
-            <a href="http://googleusercontent.com/maps.google.com/9..." target="_blank" class="btn-maps">📍 Naviga verso Elcito</a>
-            <a href="http://googleusercontent.com/maps.google.com/9..." target="_blank" class="btn-maps" style="background:none; color:var(--verde-salvia); border:1px solid var(--verde-salvia);">📍 Naviga verso La Serra</a>
+            <a href="https://maps.google.com/?q=Borgo+di+Elcito" target="_blank" class="btn-maps">📍 Naviga verso Elcito</a>
+            <a href="https://maps.google.com/?q=La+Serra+Staffolo" target="_blank" class="btn-maps" style="background:none; color:var(--verde-salvia); border:1px solid var(--verde-salvia);">📍 Naviga verso La Serra</a>
         </div>
     </section>
 
@@ -265,7 +262,7 @@
             <span class="corsivo" style="font-size: 2.2rem;">Domenica 12 Luglio</span>
             <p>Pranzo conviviale in mezzo al <strong>Monte San Vicino</strong> presso il <strong>Centro Ippico dal Gaucho</strong>.<br>
             Opzionale: passeggiata a cavallo per i più temerari.</p>
-            <a href="http://googleusercontent.com/maps.google.com/9..." target="_blank" class="btn-maps">📍 Naviga verso il Gaucho</a>
+            <a href="https://www.google.com/maps/place/Il+Gaucho+Centro+Ippico/@43.3315759,13.0759083,17z/data=!4m14!1m7!3m6!1s0x132dc72ce8100053:0x3c32852070467341!2sIl+Gaucho+Centro+Ippico!8m2!3d43.331572!4d13.0784832!16s%2Fg%2F11g1z3k59w!3m5!1s0x132dc72ce8100053:0x3c32852070467341!8m2!3d43.331572!4d13.0784832!16s%2Fg%2F11g1z3k59w?entry=ttu&g_ep=EgoyMDI2MDMxMC4wIKXMDSoASAFQAw%3D%3D" target="_blank" class="btn-maps">📍 Naviga verso il Gaucho</a>
         </div>
     </section>
 
