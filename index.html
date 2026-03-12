@@ -33,7 +33,6 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
             position: relative;
             padding: 5px;
-            /* Rimosso overflow:hidden per permettere al menu sticky di funzionare */
         }
 
         /* RAMI DECORATIVI NEI QUATTRO ANGOLI */
@@ -41,7 +40,8 @@
             position: absolute;
             height: auto;
             border: none;
-            z-index: 110; /* Sopra tutto tranne il testo del menu se necessario */
+            /* z-index alzato a 2000 per stare SOPRA il menu sticky */
+            z-index: 2000; 
             pointer-events: none;
             mix-blend-mode: multiply;
         }
@@ -59,10 +59,11 @@
             padding: 20px 0;
             text-align: center;
             border-bottom: 1px solid var(--verde-salvia);
-            position: -webkit-sticky; /* Supporto Safari */
+            position: -webkit-sticky; 
             position: sticky;
             top: 0;
-            z-index: 1000;
+            /* z-index del menu inferiore a quello delle foglie */
+            z-index: 1000; 
         }
 
         nav a {
@@ -205,11 +206,11 @@
         /* OTTIMIZZAZIONE MOBILE */
         @media (max-width: 600px) {
             nav {
-                padding: 15px 45px; /* Spazio laterale per non toccare le foglie */
+                padding: 15px 45px; 
             }
             nav a {
                 margin: 0 5px;
-                font-size: 0.7rem; /* Testo più piccolo per stare su una riga */
+                font-size: 0.7rem; 
                 letter-spacing: 0.5px;
             }
             footer {
@@ -217,7 +218,7 @@
                 font-size: 0.75rem;
             }
             .top-left, .top-right {
-                width: 70px; /* Foglie leggermente più piccole in alto su mobile */
+                width: 70px; 
             }
             .bottom-left, .bottom-right {
                 width: 100px;
@@ -262,8 +263,8 @@
         <div class="divider"></div>
         <img src="2.png" alt="Mappa" class="mappa-img">
         <div>
-            <a href="https://maps.app.goo.gl/elcito5" target="_blank" class="btn-maps">📍 Naviga verso Elcito</a>
-            <a href="https://maps.app.goo.gl/elcito6" target="_blank" class="btn-maps" style="background:none; color:var(--verde-salvia); border:1px solid var(--verde-salvia);">📍 Naviga verso La Serra</a>
+            <a href="https://maps.app.goo.gl/X9X9X9" target="_blank" class="btn-maps">📍 Naviga verso Elcito</a>
+            <a href="https://maps.app.goo.gl/Y9Y9Y9" target="_blank" class="btn-maps" style="background:none; color:var(--verde-salvia); border:1px solid var(--verde-salvia);">📍 Naviga verso La Serra</a>
         </div>
     </section>
 
