@@ -22,7 +22,6 @@
             line-height: 1.6;
             display: flex;
             justify-content: center;
-            scroll-behavior: smooth;
         }
 
         .main-container {
@@ -34,7 +33,7 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
             position: relative;
             padding: 5px;
-            overflow: hidden;
+            /* Rimosso overflow:hidden per permettere al menu sticky di funzionare */
         }
 
         /* RAMI DECORATIVI NEI QUATTRO ANGOLI */
@@ -42,27 +41,28 @@
             position: absolute;
             height: auto;
             border: none;
-            z-index: 1000;
+            z-index: 110; /* Sopra tutto tranne il testo del menu se necessario */
             pointer-events: none;
             mix-blend-mode: multiply;
         }
 
-        /* Dimensioni foglie in alto */
+        /* Foglie in alto */
         .top-left { top: 0; left: 0; width: 90px; }
         .top-right { top: 0; right: 0; width: 90px; transform: scaleX(-1); }
 
-        /* Dimensioni foglie in basso */
+        /* Foglie in basso */
         .bottom-left { bottom: 0; left: 0; width: 120px; transform: scaleY(-1); }
         .bottom-right { bottom: 0; right: 0; width: 120px; transform: rotate(180deg); }
 
         nav {
-            background: rgba(244, 241, 234, 0.95);
+            background: rgba(244, 241, 234, 0.98);
             padding: 20px 0;
             text-align: center;
             border-bottom: 1px solid var(--verde-salvia);
+            position: -webkit-sticky; /* Supporto Safari */
             position: sticky;
             top: 0;
-            z-index: 100;
+            z-index: 1000;
         }
 
         nav a {
@@ -196,20 +196,31 @@
 
         footer {
             text-align: center;
-            padding: 80px 40px 40px 40px; /* Padding generoso per evitare foglie */
+            padding: 100px 40px 40px 40px;
             color: var(--verde-salvia);
             font-size: 0.9rem;
             letter-spacing: 2px;
         }
 
-        /* OTTIMIZZAZIONE MOBILE PER TESTO E FOGLIE */
+        /* OTTIMIZZAZIONE MOBILE */
         @media (max-width: 600px) {
+            nav {
+                padding: 15px 45px; /* Spazio laterale per non toccare le foglie */
+            }
+            nav a {
+                margin: 0 5px;
+                font-size: 0.7rem; /* Testo più piccolo per stare su una riga */
+                letter-spacing: 0.5px;
+            }
             footer {
-                padding: 100px 60px 40px 60px; /* Aumenta margini per mobile */
+                padding: 120px 60px 40px 60px;
                 font-size: 0.75rem;
             }
+            .top-left, .top-right {
+                width: 70px; /* Foglie leggermente più piccole in alto su mobile */
+            }
             .bottom-left, .bottom-right {
-                width: 100px; /* Leggermente più piccole su mobile se serve spazio */
+                width: 100px;
             }
         }
     </style>
@@ -251,8 +262,8 @@
         <div class="divider"></div>
         <img src="2.png" alt="Mappa" class="mappa-img">
         <div>
-            <a href="https://maps.app.goo.gl/3" target="_blank" class="btn-maps">📍 Naviga verso Elcito</a>
-            <a href="https://maps.app.goo.gl/4" target="_blank" class="btn-maps" style="background:none; color:var(--verde-salvia); border:1px solid var(--verde-salvia);">📍 Naviga verso La Serra</a>
+            <a href="https://maps.app.goo.gl/elcito5" target="_blank" class="btn-maps">📍 Naviga verso Elcito</a>
+            <a href="https://maps.app.goo.gl/elcito6" target="_blank" class="btn-maps" style="background:none; color:var(--verde-salvia); border:1px solid var(--verde-salvia);">📍 Naviga verso La Serra</a>
         </div>
     </section>
 
