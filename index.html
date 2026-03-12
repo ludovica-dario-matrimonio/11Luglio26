@@ -113,16 +113,18 @@
             font-size: 1.4rem;
         }
         
-        /* STILE MAPPA INCORPORATA */
+/* STILE MAPPA INCORPORATA */
         .mappa-img {
             max-width: 60%;
             height: auto;
             margin: 20px auto;
             display: block;
-            border: none !important; /* Elimina la riga scura del bordo */
-            box-shadow: none !important; /* Elimina eventuali ombre */
-            mix-blend-mode: multiply; /* Fonde il bianco dell'immagine con il crema del sito */
-            filter: contrast(1.1); /* Opzionale: rende il verde del disegno un po' più vivido */
+            border: none !important;
+            box-shadow: none !important;
+            /* Questo fonde i bianchi dell'immagine con il crema del sito 
+               senza alterare i colori scuri del disegno */
+            mix-blend-mode: multiply; 
+        }
         }
 
         .btn-maps {
@@ -198,7 +200,6 @@
 
     <section id="dormire">
         <h2>Dove Dormire</h2>
-        <p>Suggerimenti per il soggiorno (distanze dal Ricevimento):</p>
         <div class="info-box">
             <div class="accommodation-item">
                 <a href="https://www.bedandbreakfast.eu/it/a/FGWIma7y0BJl/bb-la-fonte" target="_blank" class="hotel-name">B&B La Fonte</a>
@@ -209,4 +210,42 @@
                 <div class="details">Hotel & Spa • ★ 4.5 — <span class="distance">5 min</span></div>
             </div>
             <div class="accommodation-item">
-                <a href="https://www.fatt
+                <a href="https://www.fattoriafontegeloni.it/it/" target="_blank" class="hotel-name">Fattoria Fontegeloni</a>
+                <div class="details">Agriturismo • ★ 4.8 — <span class="distance">10-12 min</span></div>
+            </div>
+            <div class="accommodation-item">
+                <a href="https://www.lavecchiafonte.it/" target="_blank" class="hotel-name">La Vecchia Fonte</a>
+                <div class="details">Agriturismo • ★ 4.9 — <span class="distance">12-15 min</span></div>
+            </div>
+            <div class="accommodation-item">
+                <a href="https://www.lepiaggeagriturismo.it/" target="_blank" class="hotel-name">Agriturismo Le Piagge</a>
+                <div class="details">Agriturismo • ★ 4.6 — <span class="distance">10-12 min</span></div>
+            </div>
+            <div class="accommodation-item">
+                <a href="https://www.quivoglio.com/" target="_blank" class="hotel-name">Agriturismo Qui Voglio</a>
+                <div class="details">Agriturismo • ★ 4.9 — <span class="distance">8 min</span></div>
+            </div>
+            <div class="accommodation-item">
+                <a href="https://www.lesinante.it/" target="_blank" class="hotel-name">L'esinante</a>
+                <div class="details">Agriturismo — <span class="distance">16 min</span></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="rsvp">
+        <h2>RSVP</h2>
+        <p>Vi preghiamo di confermare entro il <strong>30 Maggio</strong>.</p>
+        <div style="margin-top: 30px;">
+            <p>Potete scriverci o chiamarci per confermare e segnalare eventuali intolleranze:</p>
+            <p style="margin: 20px 0;">
+                <strong>Dario:</strong> <a href="tel:+393420492495" class="contact-link" style="color: var(--verde-salvia); text-decoration: none; font-weight: 600; font-size: 1.4rem;">342 0492495</a>
+            </p>
+            <p style="margin: 20px 0;">
+                <strong>Ludovica:</strong> <a href="tel:+393490651539" class="contact-link" style="color: var(--verde-salvia); text-decoration: none; font-weight: 600; font-size: 1.4rem;">349 0651539</a>
+            </p>
+        </div>
+        <div class="divider" style="margin-top: 60px;"></div>
+        <h2>Lista di Nozze</h2>
+        <p>La vostra presenza è il dono più grande. Se desiderate farci un pensiero:</p>
+        <p><strong>IBAN:</strong> IT 00 X 00000 00000 000000000000</p>
+    </section>
