@@ -92,7 +92,20 @@
             margin: 0 auto;
         }
 
-        .mappa-img, .casale-img {
+        /* FIX MAPPA: Ripristino colori originali */
+        .mappa-img {
+            max-width: 60%;
+            height: auto;
+            margin: 20px auto;
+            display: block;
+            border: none !important;
+            box-shadow: none !important;
+            background-color: var(--crema);
+            mix-blend-mode: normal; 
+        }
+
+        /* STILE CASALE: Mantiene l'effetto fuso */
+        .casale-img {
             max-width: 65%;
             height: auto;
             margin: 20px auto;
@@ -147,7 +160,7 @@
         ul.regali-simbolici {
             list-style: none;
             padding: 0;
-            text-align: center; /* Allineato al centro per un look più pulito senza icone */
+            text-align: center;
         }
 
         ul.regali-simbolici li {
@@ -169,7 +182,7 @@
         <a href="#programma">Sabato</a>
         <a href="#weekend">Weekend</a>
         <a href="#dormire">Dormire</a>
-        <a href="#regali">La Casa</a>
+        <a href="#regali">Il nostro sogno</a>
         <a href="#rsvp">RSVP</a>
     </nav>
 
@@ -195,8 +208,8 @@
         <img src="2.png" alt="Mappa del matrimonio" class="mappa-img">
         
         <div style="margin-top: 20px;">
-            <a href="https://maps.app.goo.gl/..." target="_blank" class="btn-maps">📍 Naviga verso Elcito</a>
-            <a href="https://maps.app.goo.gl/..." target="_blank" class="btn-maps" style="background:none; color:var(--verde-salvia); border:1px solid var(--verde-salvia);">📍 Naviga verso La Serra</a>
+            <a href="https://maps.google.com/?q=Borgo+di+Elcito" target="_blank" class="btn-maps">📍 Naviga verso Elcito</a>
+            <a href="https://maps.google.com/?q=La+Serra+Staffolo" target="_blank" class="btn-maps" style="background:none; color:var(--verde-salvia); border:1px solid var(--verde-salvia);">📍 Naviga verso La Serra</a>
         </div>
     </section>
 
@@ -216,7 +229,7 @@
             <span class="corsivo" style="font-size: 2.2rem;">Domenica 12 Luglio</span>
             <p>Pranzo conviviale in mezzo al <strong>Monte San Vicino</strong> presso il <strong>Centro Ippico dal Gaucho</strong>.<br>
             Opzionale: passeggiata a cavallo per i più temerari.</p>
-            <a href="https://maps.app.goo.gl/..." target="_blank" class="btn-maps">📍 Naviga verso il Gaucho</a>
+            <a href="https://www.google.com/maps/place/Il+Gaucho+Centro+Ippico/@43.3315759,13.0759083,17z/data=!4m14!1m7!3m6!1s0x132dc72ce8100053:0x3c32852070467341!2sIl+Gaucho+Centro+Ippico!8m2!3d43.331572!4d13.0784832!16s%2Fg%2F11g1z3k59w!3m5!1s0x132dc72ce8100053:0x3c32852070467341!8m2!3d43.331572!4d13.0784832!16s%2Fg%2F11g1z3k59w?entry=ttu&g_ep=EgoyMDI2MDMxMC4wIKXMDSoASAFQAw%3D%3D" target="_blank" class="btn-maps">📍 Naviga verso il Gaucho</a>
         </div>
     </section>
 
