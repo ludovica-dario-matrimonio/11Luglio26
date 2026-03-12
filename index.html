@@ -35,24 +35,42 @@
             padding: 5px;
         }
 
-        /* RAMI DECORATIVI NEI QUATTRO ANGOLI */
+        /* RAMI DECORATIVI */
         .corner-branch {
-            position: absolute;
             height: auto;
             border: none;
-            /* z-index alzato a 2000 per stare SOPRA il menu sticky */
-            z-index: 2000; 
             pointer-events: none;
             mix-blend-mode: multiply;
         }
 
-        /* Foglie in alto */
-        .top-left { top: 0; left: 0; width: 90px; }
-        .top-right { top: 0; right: 0; width: 90px; transform: scaleX(-1); }
+        /* FOGLIE IN ALTO: FISSE ALLO SCHERMO */
+        .top-left, .top-right {
+            position: fixed;
+            top: 25px; /* Allineate al bordo del container */
+            width: 90px;
+            z-index: 3000; /* Sopra a tutto */
+        }
 
-        /* Foglie in basso */
-        .bottom-left { bottom: 0; left: 0; width: 120px; transform: scaleY(-1); }
-        .bottom-right { bottom: 0; right: 0; width: 120px; transform: rotate(180deg); }
+        .top-left { 
+            /* Calcolo per tenerle incollate al bordo della cornice anche su schermi grandi */
+            left: calc(50% - 425px + 5px); 
+        }
+
+        .top-right { 
+            right: calc(50% - 425px + 5px); 
+            transform: scaleX(-1); 
+        }
+
+        /* FOGLIE IN BASSO: RIMANGONO ALLA FINE DELLA PAGINA */
+        .bottom-left, .bottom-right {
+            position: absolute;
+            bottom: 0;
+            width: 120px;
+            z-index: 2000;
+        }
+
+        .bottom-left { left: 0; transform: scaleY(-1); }
+        .bottom-right { right: 0; transform: rotate(180deg); }
 
         nav {
             background: rgba(244, 241, 234, 0.98);
@@ -62,8 +80,7 @@
             position: -webkit-sticky; 
             position: sticky;
             top: 0;
-            /* z-index del menu inferiore a quello delle foglie */
-            z-index: 1000; 
+            z-index: 1000;
         }
 
         nav a {
@@ -205,24 +222,13 @@
 
         /* OTTIMIZZAZIONE MOBILE */
         @media (max-width: 600px) {
-            nav {
-                padding: 15px 45px; 
-            }
-            nav a {
-                margin: 0 5px;
-                font-size: 0.7rem; 
-                letter-spacing: 0.5px;
-            }
-            footer {
-                padding: 120px 60px 40px 60px;
-                font-size: 0.75rem;
-            }
-            .top-left, .top-right {
-                width: 70px; 
-            }
-            .bottom-left, .bottom-right {
-                width: 100px;
-            }
+            nav { padding: 15px 45px; }
+            nav a { margin: 0 5px; font-size: 0.7rem; letter-spacing: 0.5px; }
+            footer { padding: 120px 60px 40px 60px; font-size: 0.75rem; }
+            .top-left, .top-right { width: 70px; top: 25px; }
+            .top-left { left: 25px; } /* Più semplici su mobile */
+            .top-right { right: 25px; }
+            .bottom-left, .bottom-right { width: 100px; }
         }
     </style>
 </head>
@@ -263,8 +269,8 @@
         <div class="divider"></div>
         <img src="2.png" alt="Mappa" class="mappa-img">
         <div>
-            <a href="https://maps.app.goo.gl/X9X9X9" target="_blank" class="btn-maps">📍 Naviga verso Elcito</a>
-            <a href="https://maps.app.goo.gl/Y9Y9Y9" target="_blank" class="btn-maps" style="background:none; color:var(--verde-salvia); border:1px solid var(--verde-salvia);">📍 Naviga verso La Serra</a>
+            <a href="https://www.google.com/maps/search/?api=1&query=Elcito" target="_blank" class="btn-maps">📍 Naviga verso Elcito</a>
+            <a href="https://www.google.com/maps/search/?api=1&query=La+Serra+Staffolo" target="_blank" class="btn-maps" style="background:none; color:var(--verde-salvia); border:1px solid var(--verde-salvia);">📍 Naviga verso La Serra</a>
         </div>
     </section>
 
@@ -336,26 +342,11 @@
         </p>
         <div class="info-box" style="margin-bottom: 40px; background: rgba(255,255,255,0.5);">
             <ul class="regali-simbolici">
-                <li>
-                    <span class="regalo-titolo">Un albero di arancio o di ulivo</span>
-                    <span class="regalo-desc">Per veder crescere radici forti nel nostro nuovo giardino.</span>
-                </li>
-                <li>
-                    <span class="regalo-titolo">Un mattone per il grande camino</span>
-                    <span class="regalo-desc">Per riscaldare i nostri futuri inverni in famiglia.</span>
-                </li>
-                <li>
-                    <span class="regalo-titolo">Una luce in giardino</span>
-                    <span class="regalo-desc">Per illuminare le lunghe tavolate delle nostre cene estive.</span>
-                </li>
-                <li>
-                    <span class="regalo-titolo">Un metro quadro di cotto o pietra</span>
-                    <span class="regalo-desc">Per poggiare solide basi sotto i nostri piedi.</span>
-                </li>
-                <li>
-                    <span class="regalo-titolo">Un profumo per la casa</span>
-                    <span class="regalo-desc">Per rendere accogliente ogni stanza del nostro sogno.</span>
-                </li>
+                <li><span class="regalo-titolo">Un albero di arancio o di ulivo</span><span class="regalo-desc">Per veder crescere radici forti nel nostro nuovo giardino.</span></li>
+                <li><span class="regalo-titolo">Un mattone per il grande camino</span><span class="regalo-desc">Per riscaldare i nostri futuri inverni in famiglia.</span></li>
+                <li><span class="regalo-titolo">Una luce in giardino</span><span class="regalo-desc">Per illuminare le lunghe tavolate delle nostre cene estive.</span></li>
+                <li><span class="regalo-titolo">Un metro quadro di cotto o pietra</span><span class="regalo-desc">Per poggiare solide basi sotto i nostri piedi.</span></li>
+                <li><span class="regalo-titolo">Un profumo per la casa</span><span class="regalo-desc">Per rendere accogliente ogni stanza del nostro sogno.</span></li>
             </ul>
         </div>
     </section>
@@ -377,6 +368,5 @@
         LUDOVICA & DARIO — 11.07.2026
     </footer>
 </div>
-
 </body>
 </html>
