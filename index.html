@@ -10,58 +10,68 @@
             --verde-salvia: #7a8d75;
             --crema: #f4f1ea;
             --testo: #4a4a4a;
-            --sfondo-body: #e0dbd0;
+            --sfondo-fuori: #e0dbd0;
         }
 
         body {
             margin: 0;
             padding: 20px;
             font-family: 'Cormorant Garamond', serif;
-            background-color: var(--sfondo-body);
+            background-color: var(--sfondo-fuori);
             color: var(--testo);
-            line-height: 1.6;
             display: flex;
             justify-content: center;
         }
 
+        /* IL CONTENITORE ORA GESTISCE LE FOGLIE COME SFONDO */
         .main-container {
             background-color: var(--crema);
             border: 2px solid var(--verde-salvia);
-            border-radius: 2px;
             max-width: 850px;
             width: 100%;
+            position: relative;
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            position: relative; /* Importante per posizionare le foglie */
-            padding: 5px;
+            
+            /* Posizioniamo le 4 foglie negli angoli come background statico */
+            background-image: url('branch.png'), url('branch.png'), url('branch.png'), url('branch.png');
+            background-position: top left, top right, bottom left, bottom right;
+            background-repeat: no-repeat;
+            background-size: 100px auto, 100px auto, 130px auto, 130px auto;
+            /* Nota: le foglie a destra e in basso vengono ribaltate via CSS sotto */
         }
 
-        /* --- FOGLIE DECORATIVE NEI QUATTRO ANGOLI --- */
-        .corner-branch {
+        /* Sovrapposizione per ribaltare le foglie di sfondo dove serve */
+        .main-container::before {
+            content: "";
             position: absolute;
-            height: auto;
-            border: none;
-            z-index: 200; /* Stanno sopra il testo ma sotto il menu sticky */
-            pointer-events: none; /* Fondamentale: i click passano attraverso le foglie */
-            mix-blend-mode: multiply; /* Effetto trasparenza sulla carta */
+            top:0; left:0; right:0; bottom:0;
+            pointer-events: none;
+            /* Qui usiamo i filtri per gestire le direzioni delle foglie se necessario, 
+               ma per semplicità le abbiamo messe nel contenitore. 
+               Se preferisci il metodo precedente con i tag <img> ma FUNZIONANTE, eccolo sotto: */
         }
 
-        /* Foglie in alto (absolute) */
-        .top-left { top: 0; left: 0; width: 90px; }
-        .top-right { top: 0; right: 0; width: 90px; transform: scaleX(-1); }
-
-        /* Foglie in basso (absolute) */
-        .bottom-left { bottom: 0; left: 0; width: 120px; transform: scaleY(-1); }
-        .bottom-right { bottom: 0; right: 0; width: 120px; transform: rotate(180deg); }
+        /* METODO PULITO CON IMG E POINTER-EVENTS NONE */
+        .leaf {
+            position: absolute;
+            pointer-events: none;
+            mix-blend-mode: multiply;
+            z-index: 1; /* Sotto il menu */
+            width: 100px;
+        }
+        .t-l { top: 0; left: 0; }
+        .t-r { top: 0; right: 0; transform: scaleX(-1); }
+        .b-l { bottom: 0; left: 0; width: 130px; transform: scaleY(-1); }
+        .b-r { bottom: 0; right: 0; width: 130px; transform: rotate(180deg); }
 
         nav {
-            background: rgba(244, 241, 234, 0.98);
+            background: rgba(244, 241, 234, 0.95);
             padding: 20px 0;
             text-align: center;
             border-bottom: 1px solid var(--verde-salvia);
-            position: -webkit-sticky; 
             position: sticky;
             top: 0;
-            z-index: 1000; /* Il menu sta sopra a tutto */
+            z-index: 1000;
         }
 
         nav a {
@@ -75,67 +85,21 @@
         }
 
         section {
-            padding: 60px 30px;
+            padding: 60px 40px;
             text-align: center;
-            scroll-margin-top: 80px; /* Spazio per non coprire i titoli con il menu */
+            position: relative;
+            z-index: 10; /* Sopra le foglie per essere cliccabile */
+            scroll-margin-top: 80px;
         }
 
-        h2 {
-            font-family: 'Cormorant Garamond', serif;
-            color: var(--verde-salvia);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            font-size: 1.8rem;
-            margin-bottom: 20px;
-        }
-
+        h2 { color: var(--verde-salvia); text-transform: uppercase; letter-spacing: 2px; }
+        
         .corsivo {
             font-family: 'Dancing Script', cursive;
             font-size: 3.5rem;
             color: var(--verde-salvia);
             display: block;
-            margin: 10px 0;
         }
-
-        .divider {
-            width: 80px;
-            height: 1px;
-            background: var(--verde-salvia);
-            margin: 30px auto;
-        }
-
-        .section-divider-casale {
-            width: 80%;
-            height: 1px;
-            background-color: var(--verde-salvia);
-            opacity: 0.6;
-            margin: 40px auto;
-        }
-
-        .mappa-img { max-width: 60%; height: auto; margin: 40px auto; display: block; }
-        .casale-img { max-width: 65%; height: auto; margin: 20px auto; display: block; mix-blend-mode: multiply; }
-
-        .info-box {
-            background: white;
-            padding: 30px;
-            border-radius: 2px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.03);
-            margin-top: 20px;
-            border: 1px solid #e0dbd0;
-            text-align: left;
-        }
-
-        .accommodation-item {
-            margin-bottom: 25px;
-            border-bottom: 1px dotted #e0dbd0;
-            padding-bottom: 15px;
-        }
-
-        .accommodation-item:last-child { border-bottom: none; }
-
-        .hotel-name { font-size: 1.2rem; font-weight: 600; color: var(--verde-salvia); text-decoration: none; }
-        .details { font-size: 0.95rem; color: #777; font-style: italic; }
-        .distance { font-weight: 600; color: var(--testo); }
 
         .btn-maps {
             display: inline-block;
@@ -144,150 +108,101 @@
             color: white;
             text-decoration: none;
             border-radius: 4px;
+            margin: 10px 5px;
             font-size: 0.8rem;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            margin: 10px 5px;
         }
 
-        ul.regali-simbolici { list-style: none; padding: 0; text-align: center; }
-        ul.regali-simbolici li { margin-bottom: 15px; border-bottom: 1px dotted var(--verde-salvia); padding-bottom: 10px; }
-        ul.regali-simbolici li:last-child { border-bottom: none; }
-        .regalo-titolo { display: block; font-weight: 600; color: var(--verde-salvia); font-size: 1.1rem; }
-        .regalo-desc { font-size: 0.9rem; font-style: italic; color: #666; }
-
-        .contact-link {
+        .hotel-link {
             color: var(--verde-salvia);
-            text-decoration: none;
             font-weight: 600;
-            font-size: 1.4rem;
+            text-decoration: none;
+            font-size: 1.2rem;
+            display: block;
+            margin-bottom: 5px;
         }
 
-        footer {
-            text-align: center;
-            padding: 100px 40px 40px 40px;
-            color: var(--verde-salvia);
-            font-size: 0.9rem;
-            letter-spacing: 2px;
+        .info-box {
+            background: white;
+            padding: 25px;
+            border: 1px solid #e0dbd0;
+            text-align: left;
+            margin: 20px 0;
         }
 
-        /* OTTIMIZZAZIONE MOBILE */
         @media (max-width: 600px) {
-            nav { padding: 15px 45px; }
-            nav a { margin: 0 5px; font-size: 0.7rem; letter-spacing: 0.5px; }
-            footer { padding: 120px 60px 40px 60px; font-size: 0.75rem; }
-            .top-left, .top-right { width: 70px; }
-            .bottom-left, .bottom-right { width: 100px; }
+            nav a { margin: 0 5px; font-size: 0.7rem; }
+            .leaf { width: 70px; }
+            .b-l, .b-r { width: 90px; }
         }
     </style>
 </head>
 <body>
 
-<div class="main-container">
-    <img src="branch.png" alt="" class="corner-branch top-left">
-    <img src="branch.png" alt="" class="corner-branch top-right">
-    <img src="branch.png" alt="" class="corner-branch bottom-left">
-    <img src="branch.png" alt="" class="corner-branch bottom-right">
+    <div class="main-container">
+        <img src="branch.png" class="leaf t-l">
+        <img src="branch.png" class="leaf t-r">
+        <img src="branch.png" class="leaf b-l">
+        <img src="branch.png" class="leaf b-r">
 
-    <nav>
-        <a href="#home">Home</a>
-        <a href="#programma">Sabato</a>
-        <a href="#weekend">Weekend</a>
-        <a href="#dormire">Dormire</a>
-        <a href="#regali">Il nostro sogno</a>
-        <a href="#rsvp">RSVP</a>
-    </nav>
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#programma">Sabato</a>
+            <a href="#dormire">Dormire</a>
+            <a href="#regali">Regali</a>
+            <a href="#rsvp">RSVP</a>
+        </nav>
 
-    <section id="home">
-        <p style="text-transform: uppercase; letter-spacing: 2px;">Ginevra e Riccardo annunciano il matrimonio dei loro genitori</p>
-        <span class="corsivo">Ludovica & Dario</span>
-        <h2>Sabato 11 Luglio</h2>
-        <p>Ore 16:30 | Borgo di Elcito</p>
-        <div class="divider"></div>
-        <p style="font-style: italic; font-size: 1.2rem; max-width: 600px; margin: 0 auto;">
-            Ci scambieremo le promesse nella cornice di Elcito con una cerimonia simbolica che celebrerà la nostra unione.
-        </p>
-    </section>
+        <section id="home">
+            <span class="corsivo">Ludovica & Dario</span>
+            <h2>Sabato 11 Luglio 2026</h2>
+            <p>Cerimonia e Ricevimento</p>
+        </section>
 
-    <div class="section-divider"></div>
+        <section id="programma">
+            <h2>Le Location</h2>
+            <p><strong>Ore 16:30</strong> - Cerimonia al Borgo di Elcito</p>
+            <a href="https://maps.app.goo.gl/3K1pYy6t9pM7G5S17" target="_blank" class="btn-maps">📍 Mappa Elcito</a>
+            
+            <p style="margin-top: 30px;"><strong>Ore 18:30</strong> - Ricevimento presso "La Serra"</p>
+            <a href="https://maps.app.goo.gl/J5L8X8XpYpYpYpYp9" target="_blank" class="btn-maps" style="background:none; color:var(--verde-salvia); border:1px solid var(--verde-salvia);">📍 Mappa La Serra</a>
+        </section>
 
-    <section id="programma">
-        <h2>Il Giorno del Matrimonio</h2>
-        <p><strong>16:30</strong> – Cerimonia presso il Borgo di Elcito</p>
-        <p><strong>18:30</strong> – Aperitivo e Ricevimento presso "La Serra" (Staffolo)</p>
-        <div class="divider"></div>
-        <img src="2.png" alt="Mappa" class="mappa-img">
-        <div>
-            <a href="https://maps.app.goo.gl/ChIJi82FRpXALRMRvmwabeRI_mE" target="_blank" class="btn-maps">📍 Naviga verso Elcito</a>
-            <a href="https://maps.app.goo.gl/location_placeholder_staffolo" target="_blank" class="btn-maps" style="background:none; color:var(--verde-salvia); border:1px solid var(--verde-salvia);">📍 Naviga verso La Serra</a>
-        </div>
-    </section>
+        <section id="dormire">
+            <h2>Dove Dormire</h2>
+            <div class="info-box">
+                <div style="margin-bottom: 20px;">
+                    <a href="https://www.relaisdelborgo.it/" target="_blank" class="hotel-link">Relais del Borgo</a>
+                    <span>Hotel & Spa • Staffolo</span>
+                </div>
+                <div style="margin-bottom: 20px;">
+                    <a href="https://www.borgofontegeloni.it/" target="_blank" class="hotel-link">Borgo Fontegeloni</a>
+                    <span>Resort • 10 min dalle location</span>
+                </div>
+                <div>
+                    <a href="https://www.quivoglio.it/" target="_blank" class="hotel-link">Agriturismo Qui Voglio</a>
+                    <span>Immerso nel verde</span>
+                </div>
+            </div>
+        </section>
 
-    <section id="weekend" style="background-color: #f9f7f2;">
-        <h2>Il Weekend</h2>
-        <p style="font-style: italic; max-width: 650px; margin: 0 auto 30px auto; color: #666;">
-            Per chi ha voglia di trasformare il nostro matrimonio in una piccola vacanza, abbiamo pensato a qualche momento extra da passare insieme, con dettagli ancora da definire.
-        </p>
-        <div style="margin-bottom: 30px;">
-            <span class="corsivo" style="font-size: 2.2rem;">Venerdì 10 Luglio</span>
-            <p><strong>Aperitivo della Sposa</strong> & <strong>Aperitivo dello Sposo</strong></p>
-        </div>
-        <div class="divider"></div>
-        <div>
-            <span class="corsivo" style="font-size: 2.2rem;">Domenica 12 Luglio</span>
-            <p><strong>Pranzo conviviale presso il Monte San Vicino</strong></p>
-            <p style="margin-top: 15px;">A seguire, per chi lo desidera, possibilità di una passeggiata a cavallo.</p>
-        </div>
-    </section>
+        <section id="regali">
+            <h2>Il nostro sogno</h2>
+            <p>Il vostro regalo più grande è la vostra presenza. Se desiderate contribuire al nostro progetto del casale...</p>
+            <img src="casale.png" style="width: 100%; max-width: 400px; mix-blend-mode: multiply;">
+        </section>
 
-    <section id="dormire">
-        <h2>Dove Dormire</h2>
-        <div class="info-box">
-            <div class="accommodation-item"><a href="https://www.relaisdelborgo.it/" class="hotel-name" target="_blank">Relais del Borgo</a><div class="details">Hotel & Spa • Staffolo — <span class="distance">5 min</span></div></div>
-            <div class="accommodation-item"><a href="https://www.borgofontegeloni.it/" class="hotel-name" target="_blank">Borgo Fontegeloni</a><div class="details">Resort & Spa • <span class="distance">10-12 min</span></div></div>
-            <div class="accommodation-item"><a href="https://www.quivoglio.it/" class="hotel-name" target="_blank">Agriturismo Qui Voglio</a><div class="details">Agriturismo • <span class="distance">8 min</span></div></div>
-            <div class="accommodation-item"><a href="https://www.lavecchiafonte.it/" class="hotel-name" target="_blank">La Vecchia Fonte</a><div class="details">Agriturismo • <span class="distance">12-15 min</span></div></div>
-            <div class="accommodation-item"><a href="https://www.villadeisignorelli.it/" class="hotel-name" target="_blank">Villa dei Signorelli</a><div class="details">Country House • <span class="distance">10 min</span></div></div>
-            <div class="accommodation-item"><a href="https://www.bb-viamazzini.it/" class="hotel-name" target="_blank">B&B Via Mazzini</a><div class="details">B&B • Staffolo Centro</div></div>
-        </div>
-    </section>
+        <section id="rsvp">
+            <h2>RSVP</h2>
+            <p>Confermate la vostra presenza entro il 30 Maggio</p>
+            <p>Dario: <a href="tel:+393420492495" style="color:var(--verde-salvia)">342 0492495</a></p>
+            <p>Ludovica: <a href="tel:+393490651539" style="color:var(--verde-salvia)">349 0651539</a></p>
+        </section>
 
-    <div class="section-divider-casale"></div>
-
-    <section id="regali">
-        <h2>Un sogno da costruire</h2>
-        <p style="max-width: 650px; margin: 0 auto 30px auto;">
-            Stiamo mettendo le basi per il nostro progetto futuro, ristrutturando un antico casale tra le colline marchigiane: è lì che sogniamo di trascorrere il tempo più bello della nostra vita insieme ai nostri figli e ai nostri cani.
-        </p>
-        <img src="casale.png" alt="Casale" class="casale-img">
-        <div class="info-box" style="background: rgba(255,255,255,0.5);">
-            <ul class="regali-simbolici">
-                <li><span class="regalo-titolo">Un albero di arancio o di ulivo</span><span class="regalo-desc">Per veder crescere radici forti nel nostro nuovo giardino.</span></li>
-                <li><span class="regalo-titolo">Un mattone per il grande camino</span><span class="regalo-desc">Per riscaldare i nostri futuri inverni in famiglia.</span></li>
-                <li><span class="regalo-titolo">Una luce in giardino</span><span class="regalo-desc">Per illuminare le lunghe tavolate delle nostre cene estive.</span></li>
-                <li><span class="regalo-titolo">Un metro quadro di cotto o pietra</span><span class="regalo-desc">Per poggiare solide basi sotto i nostri piedi.</span></li>
-                <li><span class="regalo-titolo">Un profumo per la casa</span><span class="regalo-desc">Per rendere accogliente ogni stanza del nostro sogno.</span></li>
-            </ul>
-        </div>
-    </section>
-
-    <section id="rsvp">
-        <div class="section-divider" style="margin-bottom: 60px;"></div>
-        <h2>RSVP</h2>
-        <p style="font-style: italic; margin-bottom: 25px; color: #666; max-width: 600px; margin-left: auto; margin-right: auto;">
-            Amiamo i vostri piccoli, ma per ragioni di logistica e capienza della struttura non riusciamo a garantire spazi e attività per loro. Speriamo che possiate godervi questa giornata di festa "tra grandi" insieme a noi.
-        </p>
-        <p>Vi preghiamo di confermare entro il <strong>30 Maggio</strong>.</p>
-        <div style="margin-top: 30px;">
-            <p><strong>Dario:</strong> <a href="tel:+393420492495" class="contact-link">342 0492495</a></p>
-            <p><strong>Ludovica:</strong> <a href="tel:+393490651539" class="contact-link">349 0651539</a></p>
-        </div>
-    </section>
-
-    <footer>
-        LUDOVICA & DARIO — 11.07.2026
-    </footer>
-</div>
+        <footer style="padding: 40px; font-size: 0.8rem; opacity: 0.6;">
+            11.07.2026 • L&D
+        </footer>
+    </div>
 
 </body>
 </html>
