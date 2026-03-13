@@ -81,16 +81,24 @@
 
         h2 { text-transform: uppercase; letter-spacing: 2px; color: var(--verde-salvia); margin-top: 0; }
 
+        .btn-container {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
         .btn-maps {
             display: inline-block;
-            padding: 12px 25px;
+            padding: 12px 20px;
             background-color: var(--verde-salvia);
             color: white;
             text-decoration: none;
             border-radius: 4px;
-            margin: 15px 5px;
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             text-transform: uppercase;
+            min-width: 180px;
         }
 
         .info-box {
@@ -151,6 +159,7 @@
             .nav-leaf { width: 50px; }
             section { padding: 50px 20px; }
             .corsivo { font-size: 3rem; }
+            .btn-maps { width: 100%; }
         }
     </style>
 </head>
@@ -161,7 +170,7 @@
             <img src="branch.png" class="nav-leaf nav-leaf-left">
             <img src="branch.png" class="nav-leaf nav-leaf-right">
             <a href="#home">Home</a>
-            <a href="#sabato">Sabato</a>
+            <a href="#matrimonio">Il Giorno</a>
             <a href="#weekend">Weekend</a>
             <a href="#dormire">Dormire</a>
             <a href="#regali">Sogno</a>
@@ -169,27 +178,31 @@
         </nav>
 
         <section id="home">
-            <p style="text-transform: uppercase; font-size: 0.9rem; letter-spacing: 2px; max-width: 80%; margin: 0 auto 20px auto;">Ginevra e Riccardo annunciano il matrimonio dei loro genitori</p>
+            <p style="text-transform: uppercase; font-size: 0.9rem; letter-spacing: 2px; max-width: 80%; margin: 0 auto 10px auto;">Ginevra e Riccardo annunciano il matrimonio dei loro genitori</p>
             <span class="corsivo">Ludovica & Dario</span>
-            <h2>Sabato 11 Luglio 2026</h2>
-            <div style="width: 50px; height: 1px; background: var(--verde-salvia); margin: 20px auto;"></div>
-            <p style="font-style: italic; font-size: 1.2rem; max-width: 600px; margin: 0 auto;">
-                Ci scambieremo le promesse nella cornice di Elcito con una cerimonia simbolica che celebrerà la nostra unione.
+            <h2 style="margin-bottom: 10px;">Sabato 11 Luglio 2026</h2>
+            <p style="font-weight: 600; color: var(--verde-salvia); font-size: 1.1rem;">
+                Ore 16:30 Cerimonia a Elcito,<br>
+                a seguire ricevimento presso La Serra a Staffolo.
             </p>
         </section>
 
-        <section id="sabato">
+        <section id="matrimonio" style="background-color: rgba(122, 141, 117, 0.05);">
             <h2>Il Giorno del Matrimonio</h2>
-            <p><strong>16:30</strong> – Cerimonia presso il Borgo di Elcito</p>
-            <a href="https://maps.app.goo.gl/uXp5h6G8W9j1K2L3M5" target="_blank" class="btn-maps">📍 Mappa Elcito</a>
+            <p style="font-style: italic; font-size: 1.2rem; max-width: 650px; margin: 0 auto 15px auto;">
+                Ci scambieremo le promesse nella cornice di Elcito con una cerimonia simbolica che celebrerà la nostra unione.
+            </p>
+            <p style="margin-bottom: 40px;">A seguire festeggeremo insieme presso la Serra di Staffolo.</p>
             
-            <p style="margin-top: 40px;"><strong>18:30</strong> – Ricevimento presso "La Serra" (Staffolo)</p>
-            <a href="https://maps.app.goo.gl/uXp5h6G8W9j1K2L3M6" target="_blank" class="btn-maps" style="background:none; color:var(--verde-salvia); border:1px solid var(--verde-salvia);">📍 Mappa La Serra</a>
+            <img src="2.png" alt="Mappa" style="max-width: 70%; height: auto; margin: 0 auto; display: block;">
             
-            <img src="2.png" alt="Mappa" style="max-width: 70%; height: auto; margin: 40px auto; display: block;">
+            <div class="btn-container">
+                <a href="https://maps.google.com/?q=Elcito+San+Severino+Marche" target="_blank" class="btn-maps">📍 Naviga verso Elcito</a>
+                <a href="https://maps.google.com/?q=La+Serra+Staffolo" target="_blank" class="btn-maps" style="background:none; color:var(--verde-salvia); border:1px solid var(--verde-salvia);">📍 Naviga verso La Serra</a>
+            </div>
         </section>
 
-        <section id="weekend" style="background-color: #f9f7f2;">
+        <section id="weekend">
             <h2>Il Weekend</h2>
             <p style="font-style: italic; max-width: 650px; margin: 0 auto 30px auto; color: #666;">
                 Per chi ha voglia di trasformare il nostro matrimonio in una piccola vacanza, abbiamo pensato a qualche momento extra da passare insieme, con dettagli ancora da definire.
@@ -228,7 +241,6 @@
                 Stiamo mettendo le basi per il nostro progetto futuro, ristrutturando un antico casale tra le colline marchigiane: è lì che sogniamo di trascorrere il tempo più bello della nostra vita insieme ai nostri figli e ai nostri cani.
             </p>
             <img src="casale.png" style="width: 100%; max-width: 550px; mix-blend-mode: multiply; margin-bottom: 30px;">
-            <p style="margin-bottom: 30px; font-weight: 600; color: var(--verde-salvia);">Se desiderate farci un pensiero, ecco come potreste aiutarci simbolicamente:</p>
             <div class="info-box" style="background: rgba(255,255,255,0.5);">
                 <ul class="regali-simbolici">
                     <li><span class="regalo-titolo">Un albero di arancio o di ulivo</span><span class="regalo-desc">Per veder crescere radici forti nel nostro nuovo giardino.</span></li>
