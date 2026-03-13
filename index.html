@@ -10,20 +10,19 @@
             --verde-salvia: #7a8d75;
             --crema: #f4f1ea;
             --testo: #4a4a4a;
-            --sfondo-fuori: #e0dbd0;
+            --sfondo-body: #e0dbd0;
         }
 
         body {
             margin: 0;
             padding: 20px;
             font-family: 'Cormorant Garamond', serif;
-            background-color: var(--sfondo-fuori);
+            background-color: var(--sfondo-body);
             color: var(--testo);
             display: flex;
             justify-content: center;
         }
 
-        /* IL CONTENITORE ORA GESTISCE LE FOGLIE COME SFONDO */
         .main-container {
             background-color: var(--crema);
             border: 2px solid var(--verde-salvia);
@@ -31,42 +30,12 @@
             width: 100%;
             position: relative;
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            
-            /* Posizioniamo le 4 foglie negli angoli come background statico */
-            background-image: url('branch.png'), url('branch.png'), url('branch.png'), url('branch.png');
-            background-position: top left, top right, bottom left, bottom right;
-            background-repeat: no-repeat;
-            background-size: 100px auto, 100px auto, 130px auto, 130px auto;
-            /* Nota: le foglie a destra e in basso vengono ribaltate via CSS sotto */
         }
 
-        /* Sovrapposizione per ribaltare le foglie di sfondo dove serve */
-        .main-container::before {
-            content: "";
-            position: absolute;
-            top:0; left:0; right:0; bottom:0;
-            pointer-events: none;
-            /* Qui usiamo i filtri per gestire le direzioni delle foglie se necessario, 
-               ma per semplicità le abbiamo messe nel contenitore. 
-               Se preferisci il metodo precedente con i tag <img> ma FUNZIONANTE, eccolo sotto: */
-        }
-
-        /* METODO PULITO CON IMG E POINTER-EVENTS NONE */
-        .leaf {
-            position: absolute;
-            pointer-events: none;
-            mix-blend-mode: multiply;
-            z-index: 1; /* Sotto il menu */
-            width: 100px;
-        }
-        .t-l { top: 0; left: 0; }
-        .t-r { top: 0; right: 0; transform: scaleX(-1); }
-        .b-l { bottom: 0; left: 0; width: 130px; transform: scaleY(-1); }
-        .b-r { bottom: 0; right: 0; width: 130px; transform: rotate(180deg); }
-
+        /* BARRA DI NAVIGAZIONE STICKY CON FOGLIE AGGANCIATE */
         nav {
-            background: rgba(244, 241, 234, 0.95);
-            padding: 20px 0;
+            background: rgba(244, 241, 234, 0.98);
+            padding: 30px 0;
             text-align: center;
             border-bottom: 1px solid var(--verde-salvia);
             position: sticky;
@@ -74,8 +43,19 @@
             z-index: 1000;
         }
 
+        .nav-leaf {
+            position: absolute;
+            top: 5px;
+            width: 80px;
+            mix-blend-mode: multiply;
+            pointer-events: none;
+            z-index: 1001;
+        }
+        .nav-leaf-left { left: 10px; }
+        .nav-leaf-right { right: 10px; transform: scaleX(-1); }
+
         nav a {
-            margin: 0 12px;
+            margin: 0 10px;
             text-decoration: none;
             color: var(--verde-salvia);
             font-weight: 600;
@@ -85,124 +65,180 @@
         }
 
         section {
-            padding: 60px 40px;
+            padding: 80px 40px;
             text-align: center;
-            position: relative;
-            z-index: 10; /* Sopra le foglie per essere cliccabile */
-            scroll-margin-top: 80px;
+            scroll-margin-top: 100px;
         }
 
-        h2 { color: var(--verde-salvia); text-transform: uppercase; letter-spacing: 2px; }
-        
         .corsivo {
             font-family: 'Dancing Script', cursive;
             font-size: 3.5rem;
             color: var(--verde-salvia);
-            display: block;
         }
+
+        h2 { text-transform: uppercase; letter-spacing: 2px; color: var(--verde-salvia); margin-top: 0; }
 
         .btn-maps {
             display: inline-block;
-            padding: 12px 24px;
+            padding: 12px 25px;
             background-color: var(--verde-salvia);
             color: white;
             text-decoration: none;
             border-radius: 4px;
-            margin: 10px 5px;
+            margin: 15px 5px;
             font-size: 0.8rem;
             text-transform: uppercase;
         }
+
+        /* LISTA ALBERGHI AGGIORNATA */
+        .info-box {
+            background: white;
+            padding: 30px;
+            border: 1px solid #e0dbd0;
+            text-align: left;
+            margin: 30px 0;
+        }
+
+        .hotel-item {
+            margin-bottom: 25px;
+            border-bottom: 1px dotted #e0dbd0;
+            padding-bottom: 15px;
+        }
+
+        .hotel-item:last-child { border-bottom: none; }
 
         .hotel-link {
             color: var(--verde-salvia);
             font-weight: 600;
             text-decoration: none;
-            font-size: 1.2rem;
-            display: block;
-            margin-bottom: 5px;
+            font-size: 1.25rem;
+            display: inline-block;
         }
 
-        .info-box {
-            background: white;
-            padding: 25px;
-            border: 1px solid #e0dbd0;
-            text-align: left;
-            margin: 20px 0;
+        .hotel-link:hover { text-decoration: underline; }
+
+        .hotel-meta { font-size: 0.9rem; color: #777; font-style: italic; }
+        .rating { color: #d4af37; font-weight: bold; margin-left: 5px; }
+
+        /* FOGLIE IN BASSO */
+        .bottom-leaf {
+            position: absolute;
+            bottom: 0;
+            width: 120px;
+            mix-blend-mode: multiply;
+            pointer-events: none;
         }
+        .b-l { left: 0; transform: scaleY(-1); }
+        .b-r { right: 0; transform: rotate(180deg); }
 
         @media (max-width: 600px) {
-            nav a { margin: 0 5px; font-size: 0.7rem; }
-            .leaf { width: 70px; }
-            .b-l, .b-r { width: 90px; }
+            nav { padding: 45px 10px 20px 10px; }
+            nav a { margin: 0 4px; font-size: 0.65rem; }
+            .nav-leaf { width: 50px; }
+            section { padding: 60px 20px; }
         }
     </style>
 </head>
 <body>
 
     <div class="main-container">
-        <img src="branch.png" class="leaf t-l">
-        <img src="branch.png" class="leaf t-r">
-        <img src="branch.png" class="leaf b-l">
-        <img src="branch.png" class="leaf b-r">
-
         <nav>
+            <img src="branch.png" class="nav-leaf nav-leaf-left">
+            <img src="branch.png" class="nav-leaf nav-leaf-right">
             <a href="#home">Home</a>
             <a href="#programma">Sabato</a>
             <a href="#dormire">Dormire</a>
-            <a href="#regali">Regali</a>
+            <a href="#regali">Sogno</a>
             <a href="#rsvp">RSVP</a>
         </nav>
 
         <section id="home">
             <span class="corsivo">Ludovica & Dario</span>
             <h2>Sabato 11 Luglio 2026</h2>
-            <p>Cerimonia e Ricevimento</p>
+            <div style="width: 50px; height: 1px; background: var(--verde-salvia); margin: 20px auto;"></div>
+            <p style="text-transform: uppercase; font-size: 0.9rem; letter-spacing: 1px;">Ginevra e Riccardo annunciano il matrimonio dei loro genitori</p>
         </section>
 
         <section id="programma">
-            <h2>Le Location</h2>
-            <p><strong>Ore 16:30</strong> - Cerimonia al Borgo di Elcito</p>
-            <a href="https://maps.app.goo.gl/3K1pYy6t9pM7G5S17" target="_blank" class="btn-maps">📍 Mappa Elcito</a>
+            <h2>Il Giorno del Matrimonio</h2>
+            <p><strong>16:30</strong> – Cerimonia presso il Borgo di Elcito</p>
+            <a href="https://maps.google.com/?q=Elcito+San+Severino+Marche" target="_blank" class="btn-maps">📍 Mappa Elcito</a>
             
-            <p style="margin-top: 30px;"><strong>Ore 18:30</strong> - Ricevimento presso "La Serra"</p>
-            <a href="https://maps.app.goo.gl/J5L8X8XpYpYpYpYp9" target="_blank" class="btn-maps" style="background:none; color:var(--verde-salvia); border:1px solid var(--verde-salvia);">📍 Mappa La Serra</a>
+            <p style="margin-top: 40px;"><strong>18:30</strong> – Ricevimento presso "La Serra" (Staffolo)</p>
+            <a href="https://maps.google.com/?q=La+Serra+Staffolo" target="_blank" class="btn-maps" style="background:none; color:var(--verde-salvia); border:1px solid var(--verde-salvia);">📍 Mappa La Serra</a>
         </section>
 
         <section id="dormire">
             <h2>Dove Dormire</h2>
             <div class="info-box">
-                <div style="margin-bottom: 20px;">
-                    <a href="https://www.relaisdelborgo.it/" target="_blank" class="hotel-link">Relais del Borgo</a>
-                    <span>Hotel & Spa • Staffolo</span>
+                <div class="hotel-item">
+                    <a href="https://www.relaisdelborgo.com/" target="_blank" class="hotel-link">Relais del Borgo</a>
+                    <div class="hotel-meta">Hotel & Spa • 5 min <span class="rating">4.5/5</span></div>
                 </div>
-                <div style="margin-bottom: 20px;">
-                    <a href="https://www.borgofontegeloni.it/" target="_blank" class="hotel-link">Borgo Fontegeloni</a>
-                    <span>Resort • 10 min dalle location</span>
+                <div class="hotel-item">
+                    <a href="https://www.quivoglio.com/" target="_blank" class="hotel-link">Agriturismo Qui Voglio</a>
+                    <div class="hotel-meta">Agriturismo • 10 min <span class="rating">4.9/5</span></div>
                 </div>
-                <div>
-                    <a href="https://www.quivoglio.it/" target="_blank" class="hotel-link">Agriturismo Qui Voglio</a>
-                    <span>Immerso nel verde</span>
+                <div class="hotel-item">
+                    <a href="https://villaverdicchio.com/" target="_blank" class="hotel-link">Villa Verdicchio</a>
+                    <div class="hotel-meta">B&B • 10-15 min <span class="rating">5/5</span></div>
+                </div>
+                <div class="hotel-item">
+                    <a href="http://www.ilcasaledellerondini.it/" target="_blank" class="hotel-link">La Casa Delle Rondini</a>
+                    <div class="hotel-meta">B&B • 10 min <span class="rating">4.6/5</span></div>
+                </div>
+                <div class="hotel-item">
+                    <a href="https://www.bedandbreakfast.eu/it/a/FGWIma7y0BJl/bb-la-fonte" target="_blank" class="hotel-link">B&B La Fonte</a>
+                    <div class="hotel-meta">B&B • 15 min <span class="rating">5/5</span></div>
+                </div>
+                <div class="hotel-item">
+                    <a href="https://www.lavecchiafonte.it/" target="_blank" class="hotel-link">La Vecchia Fonte</a>
+                    <div class="hotel-meta">Agriturismo • 15 min <span class="rating">4.9/5</span></div>
+                </div>
+                <div class="hotel-item">
+                    <a href="https://www.lesinante.it/" target="_blank" class="hotel-link">Agriturismo L'esinante</a>
+                    <div class="hotel-meta">Agriturismo • 15 min <span class="rating">4.7/5</span></div>
+                </div>
+                <div class="hotel-item">
+                    <a href="https://www.lacortesullago.it/" target="_blank" class="hotel-link">La Corte Sul Lago</a>
+                    <div class="hotel-meta">Agriturismo • 20 min <span class="rating">4.3/5</span></div>
+                </div>
+                <div class="hotel-item">
+                    <a href="https://collesul.tripcombined.com/" target="_blank" class="hotel-link">Colle Sul Lago</a>
+                    <div class="hotel-meta">Hotel • 20 min <span class="rating">4.5/5</span></div>
+                </div>
+                <div class="hotel-item">
+                    <a href="https://imori.net/" target="_blank" class="hotel-link">Agriturismo I Mori</a>
+                    <div class="hotel-meta">Agriturismo • 20 min <span class="rating">4.8/5</span></div>
                 </div>
             </div>
         </section>
 
         <section id="regali">
-            <h2>Il nostro sogno</h2>
-            <p>Il vostro regalo più grande è la vostra presenza. Se desiderate contribuire al nostro progetto del casale...</p>
-            <img src="casale.png" style="width: 100%; max-width: 400px; mix-blend-mode: multiply;">
+            <h2>Un sogno da costruire</h2>
+            <p style="margin-bottom: 30px;">Stiamo ristrutturando un antico casale tra le colline marchigiane. Se desiderate farci un regalo, ecco come aiutarci simbolicamente:</p>
+            <img src="casale.png" style="width: 100%; max-width: 500px; mix-blend-mode: multiply; margin-bottom: 20px;">
+            <ul style="list-style: none; padding: 0; font-style: italic; color: var(--verde-salvia); line-height: 2;">
+                <li>• Un albero per il giardino •</li>
+                <li>• Un mattone per il camino •</li>
+                <li>• Una luce per la sera •</li>
+            </ul>
         </section>
 
         <section id="rsvp">
             <h2>RSVP</h2>
-            <p>Confermate la vostra presenza entro il 30 Maggio</p>
-            <p>Dario: <a href="tel:+393420492495" style="color:var(--verde-salvia)">342 0492495</a></p>
-            <p>Ludovica: <a href="tel:+393490651539" style="color:var(--verde-salvia)">349 0651539</a></p>
+            <p style="margin-bottom: 30px; font-style: italic; color: #666; max-width: 600px; margin: 0 auto 30px auto;">"Amiamo i vostri piccoli, ma abbiamo scelto di celebrare questa giornata in un'atmosfera dedicata ai soli adulti."</p>
+            <p>Vi preghiamo di confermare entro il <strong>30 Maggio</strong></p>
+            <p style="margin-top: 20px;">Dario: <a href="tel:+393420492495" style="color:var(--verde-salvia); font-weight: 600; text-decoration: none;">342 0492495</a></p>
+            <p>Ludovica: <a href="tel:+393490651539" style="color:var(--verde-salvia); font-weight: 600; text-decoration: none;">349 0651539</a></p>
         </section>
 
-        <footer style="padding: 40px; font-size: 0.8rem; opacity: 0.6;">
-            11.07.2026 • L&D
+        <img src="branch.png" class="bottom-leaf b-l">
+        <img src="branch.png" class="bottom-leaf b-r">
+
+        <footer style="padding: 40px; font-size: 0.8rem; opacity: 0.5;">
+            LUDOVICA & DARIO — 11.07.2026
         </footer>
     </div>
-
 </body>
 </html>
