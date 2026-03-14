@@ -168,10 +168,10 @@
             section { padding: 50px 20px; }
         }
 
-  @media (max-width: 480px) {
-            /* Colpiamo SOLO i nomi degli sposi */
+@media (max-width: 480px) {
+            /* 1. Nomi sposi in alto: su una riga e fluidi */
             .corsivo { 
-                font-size: 11vw !important; /* Dimensione perfetta per i nomi su mobile */
+                font-size: 11vw !important; 
                 white-space: nowrap !important; 
                 display: block !important;
                 width: 100% !important;
@@ -179,44 +179,44 @@
                 margin: 10px 0 !important;
             }
 
-            /* Ripristiniamo gli h2 normali così non "esplodono" */
+            /* 2. Titoli h2 (Matrimonio, ecc): tornano normali */
             h2 {
                 font-size: 1.2rem !important; 
-                white-space: normal !important; /* Permette agli altri titoli di andare a capo se serve */
+                white-space: normal !important;
                 letter-spacing: 2px !important;
             }
 
-            /* Sistemiamo il contenitore per non tagliare i bordi */
-            .main-container {
-                width: 95% !important;
-                margin: 0 auto 40px auto !important; /* Aggiunto 40px in fondo per staccare la cornice dal bordo del telefono */
-            }
-     /* Sistemiamo il footer per mobile */
-            footer {
-                padding: 100px 20px 80px 20px !important; /* Molto spazio sopra e sotto */
-                min-height: 200px !important; /* Forza l'altezza minima della sezione */
-                font-size: 0.75rem !important; 
-                display: flex !important;
-                flex-direction: column !important;
-                justify-content: center !important;
-                align-items: center !important;
-                position: relative !important; /* Importante per le foglie */
+            /* 3. Ridurre lo spazio vuoto tra le sezioni (compreso RSVP) */
+            section {
+                padding: 30px 20px !important; /* Spazio ridotto sopra e sotto */
             }
 
-            /* Posizioniamo le foglie in modo che non tocchino il testo */
-            .bottom-leaf {
-                width: 80px !important; 
-                position: absolute !important;
-                bottom: 10px !important; /* Distanza dal bordo inferiore */
+            /* 4. Compattare il footer */
+            footer {
+                padding: 30px 20px 50px 20px !important; 
+                min-height: auto !important; 
+                font-size: 0.7rem !important;
+                display: flex !important;
+                flex-direction: column !important;
+                align-items: center !important;
+                position: relative !important;
             }
-            
+
+            /* 5. Foglie negli angoli del footer */
+            .bottom-leaf {
+                width: 70px !important; 
+                position: absolute !important;
+                bottom: 5px !important;
+            }
             .b-l { left: 5px !important; }
             .b-r { right: 5px !important; }
 
-            /* Diamo respiro alla cornice finale */
+            /* 6. Distanza della cornice dal bordo del telefono */
             .main-container {
-                margin-bottom: 50px !important;
+                width: 95% !important;
+                margin: 0 auto 30px auto !important;
             }
+        }
     </style>
 </head>
 <body>
